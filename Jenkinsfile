@@ -1,3 +1,4 @@
+gv = null 
 pipeline {
     agent any 
 
@@ -14,7 +15,7 @@ pipeline {
         stage('Build App') {
             steps {
                 script {
-                  groovy.buildApp()
+                  gv.buildApp()
                 }
             }
         }
@@ -22,7 +23,7 @@ pipeline {
         stage('test') {
             steps {
                 script {
-                   groovy.testApp()
+                   gv.testApp()
                 }
             }
         }
@@ -30,7 +31,7 @@ pipeline {
         stage('Build Image') {
             steps {
                 script {
-                    groovy.buildImage()
+                   gv.buildImage()
                 }
             }
         }
@@ -38,7 +39,7 @@ pipeline {
         stage('Deploy to DEV') {
             steps {
                script {
-                  groovy.deployApp()
+                 gv.deployApp()
                }
             }
         }
