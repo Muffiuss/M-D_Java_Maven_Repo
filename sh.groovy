@@ -47,7 +47,7 @@ def commitVersion() {
                     sh "git remote set-url origin https://${USER}:${PASS}@github.com/Muffiuss/M-D_Java_Maven_Repo.git"
                     sh 'git add .' 
                     sh 'git commit -m "ci:version bump"'
-                    sh 'git push origin HEAD:develop'
+                    sh 'git push origin HEAD:master'
                }
 }
 
