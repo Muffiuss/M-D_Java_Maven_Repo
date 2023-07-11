@@ -31,11 +31,14 @@ def devDeploy() {
 
     withCredentials([string(credentialsId: 'docker-hub-access-token', variable: 'DOCKERHUB_ACCESS_TOKEN')]) {
         sshagent(['dev-key']) {
-            sh """ ssh -o StrictHostKeyChecking=no ubuntu@3.80.140.21 'docker login -u muffius -p "${DOCKERHUB_ACCESS_TOKEN}" && ${stopCmd} && ${dockerCmd}'"""
-        // sh """ ssh -o StrictHostKeyChecking=no ubuntu@54.210.104.123 'docker login -u muffius -p "${DOCKERHUB_ACCESS_TOKEN}" && ${stopCmd} && ${dockerCmd}'"""
-        }  
+            sh """
+            ssh -o StrictHostKeyChecking=no ubuntu@3.80.140.21 'docker login -u muffius -p "${DOCKERHUB_ACCESS_TOKEN}" &&
+            ${stopCmd} &&
+            ${dockerCmd}'"""
+        }
     }
 }
+
 
 def commitVersion() {
      withCredentials([usernamePassword(credentialsId:'github-credentials', usernameVariable:'USER',passwordVariable:'PASS')]) {
