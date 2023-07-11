@@ -22,14 +22,10 @@ def devDeploy() {
     def dockerCmd = "docker run -d -p 8080:8080 ${image}"
 
     withCredentials([string(credentialsId: 'docker-hub-access-token', variable: 'DOCKERHUB_ACCESS_TOKEN')]) {
-        sshagent(['dev-key']) {
-            sh """
-            ssh -o StrictHostKeyChecking=no ubuntu@44.202.39.78 '
-                docker login -u muffius -p "${DOCKERHUB_ACCESS_TOKEN}" &&
-                ${stopCmd} &&
-                ${dockerCmd}'
-            """
-        }
+        sshagent(['QA-Key']) {
+           // sh """ ssh -o StrictHostKeyChecking=no ubuntu@44.202.39.78 'docker login -u muffius -p "${DOCKERHUB_ACCESS_TOKEN}" && ${stopCmd} && ${dockerCmd}'"""
+                        sh """ ssh -o StrictHostKeyChecking=no ubuntu@54.210.104.123 'docker login -u muffius -p "${DOCKERHUB_ACCESS_TOKEN}" && ${stopCmd} && ${dockerCmd}'"""
+        }  
     }
 }
 
