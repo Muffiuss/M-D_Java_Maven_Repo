@@ -43,6 +43,7 @@ pipeline {
         stage('Deploy to DEV') {
             steps {
                 sshagent(['dev-key']) {
+                    sh "ssh -o StrictHostKeyChecking=no ubuntu@44.202.39.78 docker pull muffius/demo-repo:jma-3.0"
                     sh "ssh -o StrictHostKeyChecking=no ubuntu@44.202.39.78 \"${DOCKER_CMD}\""
                 }
             }
