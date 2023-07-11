@@ -35,7 +35,7 @@ pipeline {
         stage('Build Image') {
             steps {
                 script {
-                   gv.buildImage()
+                   gv.dockerBuild()
                 }
             }
         }
@@ -43,7 +43,7 @@ pipeline {
         stage('Deploy to DEV') {
             steps {
                script {
-                 gv.deployApp()
+                 gv.devDeploy()
                }
             }
         }
