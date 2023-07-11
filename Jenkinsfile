@@ -25,7 +25,7 @@ pipeline {
         }
         
         stage('Test') {
-            steps {A
+            steps {
                 script {
                    gv.testApp()
                 }
