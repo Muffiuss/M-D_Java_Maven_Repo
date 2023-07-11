@@ -65,13 +65,6 @@ pipeline {
           }
           }
         }
-        stage('ignore commit') {
-            steps {
-                script {
-                   gv.ignoreCommit()
-                }
-            }
-        }
                 stage('clean workspace') {
           steps {
                cleanWs()
