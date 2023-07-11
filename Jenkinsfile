@@ -28,7 +28,7 @@ pipeline {
         
         stage('Build Image') {
             steps {
-                withCredentials([userPassword(credentialsId:'docker-credentials', usernameVariable:'USER', passwordVariable:'PASS')]) {
+               withCredentials([usernamePassword(credentialsId: 'docker-credentials', usernameVariable: 'USER', passwordVariable: 'PASS')]) {
                     sh "echo $PASS | docker login -u $USER --password-stdin"
                     sh 'docker build . -t muffius/demo-repo:jma-3.0'
                     sh 'docker push muffius/demo-repo:jma-3.0'
