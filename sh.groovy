@@ -17,6 +17,7 @@ def buildImage() {
 }
 
 def devDeploy() {
+    def image = 'muffius/demo-repo:jma-3.0'
     def stopCmd = "docker stop \$(docker ps -q --filter ancestor=${image}) || true && docker rm \$(docker ps -a -q --filter ancestor=${image}) || true"
     def dockerCmd = 'docker run -d -p 8080:8080 muffius/demo-repo:jma-3.0'
     def username = "muffius"
