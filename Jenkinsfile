@@ -37,12 +37,12 @@ pipeline {
         }
         
         stage('Deploy to DEV') {
-            steps {
-               
-                sshagent(['dev-key']) {
-                    sh "ssh -o StrictHostKeyChecking=no ubuntu@44.202.39.78 {$DOCKER_CMD}"
-                }
-            }
-        }
+    steps {
+        sshagent(['dev-key']) {
+            sh "ssh -o StrictHostKeyChecking=no ubuntu@44.202.39.78 \"${DOCKER_CMD}\""
+                 }
+              }
+           }
+
     }
 }
