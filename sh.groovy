@@ -19,14 +19,9 @@ def buildImage() {
 def devDeploy() {
     def image = 'muffius/demo-repo:jma-3.0'
     def stopCmd = "docker stop \$(docker ps -q --filter ancestor=${image}) || true && docker rm \$(docker ps -a -q --filter ancestor=${image}) || true"
-    def dockerCmd = 'docker run -d -p 8080:8080 muffius/demo-repo:jma-3.0'
-   // def username = "muffius"
-    // def passwordCredentials = credentials('docker-credentials')
-   //  def dockerLoginCmd = "docker login -u ${username} -p ${passwordCredentials}"
-
+    def dockerCmd = "docker run -d -p 8080:8080 ${image}"
     sshagent(['dev-key']) {
-       sh "ssh -o StrictHostKeyChecking=no ubuntu@44.202.39.78 '${stopCmd} && ${dockerLoginCmd} && ${dockerCmd}'"
-     //  sh "ssh -o StrictHostKeyChecking=no ubuntu@54.210.104.123 '${stopCmd} &&  ${dockerCmd}'" 
+        sh "ssh -o StrictHostKeyChecking=no ubuntu@44.202.39.78 '${stopCmd} && ${dockerCmd}'"
     }
 }
 
