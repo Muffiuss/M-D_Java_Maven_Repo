@@ -1,4 +1,3 @@
-// Global variable
 def gv
 
 pipeline {
