@@ -68,7 +68,7 @@ pipeline {
         stage('ignore commit') {
             steps {
                 script {
-                   gv.
+                   gv.ignoreCommit()
                 }
             }
         }
