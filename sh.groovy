@@ -24,8 +24,8 @@ def devDeploy() {
     def dockerLoginCmd = "docker login -u ${username} -p ${passwordCredentials}"
 
     sshagent(['dev-key']) {
-     //  sh "ssh -o StrictHostKeyChecking=no ubuntu@44.202.39.78 '${stopCmd} && ${dockerLoginCmd} && ${dockerCmd}'"
-       sh "ssh -o StrictHostKeyChecking=no ubuntu@54.210.104.123 '${stopCmd} && ${dockerLoginCmd} && ${dockerCmd}'" 
+       sh "ssh -o StrictHostKeyChecking=no ubuntu@44.202.39.78 '${stopCmd} && ${dockerLoginCmd} && ${dockerCmd}'"
+     //  sh "ssh -o StrictHostKeyChecking=no ubuntu@54.210.104.123 '${stopCmd} && ${dockerLoginCmd} && ${dockerCmd}'" 
     }
 }
 
