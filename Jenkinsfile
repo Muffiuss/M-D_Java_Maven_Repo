@@ -1,16 +1,18 @@
-gv = null 
 pipeline {
     agent any 
 
     tools {
         maven 'Maven'
     }
-
-    environment {
-       groovy = load 'script.groovy'
-    }
     
     stages {
+        stage('Load script') {
+            steps {
+                script {
+                    gv = load 'script.groovy'
+                }
+            }
+        }
          
         stage('Build App') {
             steps {
