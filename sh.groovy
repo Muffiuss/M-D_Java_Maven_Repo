@@ -41,7 +41,7 @@ def devDeploy() {
 
 
 def commitVersion() {
-     withCredentials([string(credentialsId:'git-hub-token', variable:'TOKEN')]) {
+     withCredentials([string(credentialsId:'github-access-token', variable:'TOKEN')]) {
                     sh 'git config --global user.email "jenkins@example.com"'
                     sh 'git config --global user.name "jenkins"'
                     sh "git remote set-url origin https://token:${TOKEN}@github.com/Muffiuss/M-D_Java_Maven_Repo.git"
