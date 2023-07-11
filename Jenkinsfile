@@ -27,7 +27,7 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                   gv.testApp()
+                   gv.runTest()
                 }
             }
         }
