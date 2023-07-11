@@ -1,10 +1,11 @@
 def incrementVersion() {
     echo "incrementing Version"
-     sh 'mvn build-helper:parse-version versions:set -DnewVersion=\\${parsedVersion.majorVersion}.\\${parsedVersion.minorVersion}.\\${parsedVersion.nextIncrementalVersion} versions:commit'
-          def matcher = readFile('pom.xml')=~ '<version>(.+)</version>'
-          def VERSION = matcher[0][1]
-          env.IMAGE = ${VERSION}-${BUILD_NUMBER}
+    sh 'mvn build-helper:parse-version versions:set -DnewVersion=\\${parsedVersion.majorVersion}.\\${parsedVersion.minorVersion}.\\${parsedVersion.nextIncrementalVersion} versions:commit'
+    def matcher = readFile('pom.xml') =~ '<version>(.+)</version>'
+    def VERSION = matcher[0][1]
+    env.IMAGE = "${VERSION}-${BUILD_NUMBER}"
 }
+
 def buildJar() {
       echo "Building the jar file"
             sh 'mvn clean install'
