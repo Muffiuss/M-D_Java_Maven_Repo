@@ -41,10 +41,10 @@ def devDeploy() {
 
 
 def commitVersion() {
-     withCredentials([usernamePassword(credentialsId:'git-hub-token', usernameVariable:'USER',passwordVariable:'PASS')]) {
+     withCredentials([string(credentialsId:'git-hub-token', variable:'TOKEN')]) {
                     sh 'git config --global user.email "jenkins@example.com"'
                     sh 'git config --global user.name "jenkins"'
-                    sh "git remote set-url origin https://${USER}:${PASS}@github.com/Muffiuss/M-D_Java_Maven_Repo.git"
+                    sh "git remote set-url origin https://token:${TOKEN}@github.com/Muffiuss/M-D_Java_Maven_Repo.git"
                     sh 'git add .' 
                     sh 'git commit -m "ci:version bump"'
                     sh 'git push origin HEAD:main'
