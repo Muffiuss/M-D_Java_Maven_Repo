@@ -6,6 +6,10 @@ pipeline {
     tools {
         maven 'Maven'
     }
+
+    environment {
+     DOCKER_REPO = 'muffius/demo-repo'
+    }
     
     stages {
         stage('Load script') {
@@ -15,7 +19,11 @@ pipeline {
                 }
             }
         }
-         
+        stage('version Increment') {
+          steps {
+               gv.incrementVersion()
+            }
+         }
         stage('Build App') {
             steps {
                 script {
@@ -46,6 +54,11 @@ pipeline {
                gv.devDeploy() 
                }
             }
+        }
+        stage('commit version') {
+          steps {
+              gv.commitVersion()
+          }
         }
                 stage('clean workspace') {
           steps {
