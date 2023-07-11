@@ -51,7 +51,7 @@ pipeline {
             }
         }
         
-        stage('Deploy to DEV') {
+        stage('Deploy to QA') {
             steps {
                script {
                gv.devDeploy() 
