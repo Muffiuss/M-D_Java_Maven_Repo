@@ -1,3 +1,6 @@
+// Global variable
+def gv
+
 pipeline {
     agent any 
 
@@ -9,7 +12,7 @@ pipeline {
         stage('Load script') {
             steps {
                 script {
-                    env.gv = load 'script.groovy'
+                    gv = load 'script.groovy'
                 }
             }
         }
@@ -17,7 +20,7 @@ pipeline {
         stage('Build App') {
             steps {
                 script {
-                  env.gv.buildApp()
+                  gv.buildApp()
                 }
             }
         }
@@ -25,7 +28,7 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                   env.gv.testApp()
+                   gv.testApp()
                 }
             }
         }
@@ -33,7 +36,7 @@ pipeline {
         stage('Build Image') {
             steps {
                 script {
-                   env.gv.buildImage()
+                   gv.buildImage()
                 }
             }
         }
@@ -41,10 +44,9 @@ pipeline {
         stage('Deploy to DEV') {
             steps {
                script {
-                 env.gv.deployApp()
+                 gv.deployApp()
                }
             }
         }
     }
 }
-
