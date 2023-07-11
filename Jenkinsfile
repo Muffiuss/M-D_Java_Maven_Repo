@@ -41,7 +41,7 @@ pipeline {
                script {
                     def dockerCmd = 'docker run -d -p 8080:8080 muffius/demo-repo:jma-3.0'
                      sshagent(['dev-key']) {
-                    sh "ssh -o StrictHostKeyChecking=no ubuntu@44.202.39.78 ${dockerCmd}"
+                    sh "ssh -o StrictHostKeyChecking=no ubuntu@44.202.39.78 "${dockerCmd}""
                 }
                }
             }
