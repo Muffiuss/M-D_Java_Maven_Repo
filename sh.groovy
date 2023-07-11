@@ -42,8 +42,8 @@ def devDeploy() {
 
 def commitVersion() {
      withCredentials([usernamePassword(credentialsId:'github-access-token', usernameVariable:'USER', passwordVariable:'PASS' )]) {
-                    sh 'git config --global user.email "ikpemuffius@yahoo.com"'
-                    sh 'git config --global user.name "Muffiuss"'
+                    sh 'git config --global user.email "jenkins@example.com"'
+                    sh 'git config --global user.name "jenkins"'
                     sh "git remote set-url origin https://${USER}:${PASS}@github.com/Muffiuss/M-D_Java_Maven_Repo.git"
                     sh 'git add .' 
                     sh 'git commit -m "ci:version bump"'
