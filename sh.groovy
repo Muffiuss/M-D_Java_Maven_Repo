@@ -42,8 +42,8 @@ def devDeploy() {
 
 def commitVersion() {
      withCredentials([string(credentialsId:'github-access-token', variable:'TOKEN')]) {
-                    sh 'git config --global user.email "jenkins@example.com"'
-                    sh 'git config --global user.name "jenkins"'
+                    sh 'git config --global user.email "ikpemuffius@yahoo.com"'
+                    sh 'git config --global user.name "Muffiuss"'
                     sh "git remote set-url origin https://token:${TOKEN}@github.com/Muffiuss/M-D_Java_Maven_Repo.git"
                     sh 'git add .' 
                     sh 'git commit -m "ci:version bump"'
