@@ -26,8 +26,8 @@ def buildImage() {
 
 def devDeploy() {
     def image = "${DOCKER_REPO}:${env.IMAGE}"
-    def stopCmd = "docker stop \$(docker ps -q --filter ancestor=${image}) || true && docker rm \$(docker ps -a -q --filter ancestor=${image}) || true"
-    def dockerCmd = "docker run -d -p 8080:8080 ${image}"
+    def stopCmd = "docker stop \$(docker ps -q --filter label=my-app) || true && docker rm \$(docker ps -a -q --filter label=my-app) || true"
+    def dockerCmd = "docker run -d -p 8080:8080 --label my-app ${image}"
 
     withCredentials([string(credentialsId: 'docker-hub-access-token', variable: 'DOCKERHUB_ACCESS_TOKEN')]) {
         sshagent(['dev-key']) {
@@ -41,7 +41,7 @@ def devDeploy() {
 
 
 def commitVersion() {
-     withCredentials([usernamePassword(credentialsId:'github-credentials', usernameVariable:'USER',passwordVariable:'PASS')]) {
+     withCredentials([usernamePassword(credentialsId:'git-hub-token', usernameVariable:'USER',passwordVariable:'PASS')]) {
                     sh 'git config --global user.email "jenkins@example.com"'
                     sh 'git config --global user.name "jenkins"'
                     sh "git remote set-url origin https://${USER}:${PASS}@github.com/Muffiuss/M-D_Java_Maven_Repo.git"
