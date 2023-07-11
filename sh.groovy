@@ -51,5 +51,12 @@ def commitVersion() {
                }
 }
 
+def ignoreCommit() {
+     def commitMsg = sh(returnStdout: true, script: 'git log -1 --pretty=%B').trim()
+                    if (commitMsg == 'ci:version bump') {
+                        currentBuild.result = 'ABORTED'
+                        error('Skipping due to ignored commit message')
+                    }
+}
 
 return this
