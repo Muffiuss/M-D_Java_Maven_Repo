@@ -15,8 +15,8 @@ WORKDIR /usr/app/
 RUN addgroup --system app && adduser --system --group app
 USER app
 
-COPY --from=build /usr/app/target/java-maven-app-1.1.0-SNAPSHOT.jar /usr/app/
+COPY --from=build /usr/app/target/java-maven-app-*.jar /usr/app/
 
 EXPOSE 8080
 
-CMD [ "java", "-XX:+UseContainerSupport", "-XX:MaxRAMPercentage=50.0", "-jar", "java-maven-app-1.1.0-SNAPSHOT.jar" ]
+CMD  java -XX:+UseContainerSupport -XX:MaxRAMPercentage=50.0 -jar java-maven-*.jar 
