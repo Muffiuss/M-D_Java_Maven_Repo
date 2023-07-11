@@ -1,5 +1,3 @@
-def gv
-
 pipeline {
     agent any 
 
@@ -8,26 +6,21 @@ pipeline {
     }
     
     stages {
-        stage('Load script') {
-            steps {
-                script {
-                    gv = load 'script.groovy'
-                }
-            }
-        }
          
         stage('Build App') {
             steps {
                 script {
+                  def gv = load 'script.groovy'
                   gv.buildApp()
                 }
             }
         }
         
-        stage('Test') {
+        stage('test') {
             steps {
                 script {
-                   gv.testApp()
+                  def gv = load 'script.groovy'
+                  gv.testApp()
                 }
             }
         }
@@ -35,7 +28,8 @@ pipeline {
         stage('Build Image') {
             steps {
                 script {
-                   gv.buildImage()
+                  def gv = load 'script.groovy'
+                  gv.buildImage()
                 }
             }
         }
@@ -43,15 +37,10 @@ pipeline {
         stage('Deploy to DEV') {
             steps {
                script {
+                 def gv = load 'script.groovy'
                  gv.deployApp()
                }
             }
         }
-        stage('clean workspace') {
-          steps {
-               sh 'cleanWs()'
-          }
-        }
-     
     }
 }
