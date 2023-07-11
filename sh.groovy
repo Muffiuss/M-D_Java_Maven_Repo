@@ -30,9 +30,9 @@ def devDeploy() {
     def dockerCmd = "docker run -d -p 8080:8080 --label my-app ${image}"
 
     withCredentials([string(credentialsId: 'docker-hub-access-token', variable: 'DOCKERHUB_ACCESS_TOKEN')]) {
-        sshagent(['dev-key']) {
+        sshagent(['QA-Key']) {
             sh """
-            ssh -o StrictHostKeyChecking=no ubuntu@3.80.140.21 'docker login -u muffius -p "${DOCKERHUB_ACCESS_TOKEN}" &&
+            ssh -o StrictHostKeyChecking=no ubuntu@18.212.15.234 'docker login -u muffius -p "${DOCKERHUB_ACCESS_TOKEN}" &&
             ${stopCmd} &&
             ${dockerCmd}'"""
         }
