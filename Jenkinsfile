@@ -9,7 +9,7 @@ pipeline {
         stage('Load script') {
             steps {
                 script {
-                    gv = load 'script.groovy'
+                    env.gv = load 'script.groovy'
                 }
             }
         }
@@ -17,15 +17,15 @@ pipeline {
         stage('Build App') {
             steps {
                 script {
-                  gv.buildApp()
+                  env.gv.buildApp()
                 }
             }
         }
         
-        stage('test') {
+        stage('Test') {
             steps {
                 script {
-                   gv.testApp()
+                   env.gv.testApp()
                 }
             }
         }
@@ -33,7 +33,7 @@ pipeline {
         stage('Build Image') {
             steps {
                 script {
-                   gv.buildImage()
+                   env.gv.buildImage()
                 }
             }
         }
@@ -41,9 +41,10 @@ pipeline {
         stage('Deploy to DEV') {
             steps {
                script {
-                 gv.deployApp()
+                 env.gv.deployApp()
                }
             }
         }
     }
 }
+
