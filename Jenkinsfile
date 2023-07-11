@@ -21,7 +21,9 @@ pipeline {
         }
         stage('version Increment') {
           steps {
-               gv.incrementVersion()
+              script {
+                gv.incrementVersion()
+              }
             }
          }
         stage('Build App') {
@@ -58,7 +60,9 @@ pipeline {
         }
         stage('commit version') {
           steps {
-              gv.commitVersion()
+          script {
+                gv.commitVersion()
+          }
           }
         }
                 stage('clean workspace') {
