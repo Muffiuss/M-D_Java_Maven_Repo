@@ -51,5 +51,4 @@ def commitVersion() {
                }
 }
 
-
 return this
